@@ -15,7 +15,13 @@ class CreatePostersTable extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->unsignedBigInteger('image_id');
+            $table->unsignedBigInteger('album_id');
             $table->timestamps();
+
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
         });
     }
 
