@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  php:
+    image: webdevops/php-nginx-dev:7.4
+    container_name: poster_php
+    volumes:
+      - ./src:/src
+    working_dir: /src
+    ports:
+      - "80:80"
+    environment:
+      - WEB_DOCUMENT_ROOT=/src/public
+
+  mysql:
+    image: mysql:5.7
+    container_name: poster_mysql
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=docker
+      - MYSQL_DATABASE=api_posters
+    ports:
+      - "3306:3306"
