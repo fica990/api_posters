@@ -16,6 +16,9 @@ class CreatePostersTable extends Migration
         Schema::create('posters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('background_color', 6);
+            $table->string('title');
+            $table->string('description');
             $table->unsignedBigInteger('image_id');
             $table->unsignedBigInteger('album_id');
             $table->timestamps();
