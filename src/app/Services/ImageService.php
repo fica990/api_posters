@@ -13,17 +13,20 @@ class ImageService
         $this->imageRepository = $imageRepository;
     }
 
-    public function allImages()
+
+    public function nonPosters()
     {
-        return $this->imageRepository->all();
+        return $this->imageRepository->nonPosters();
     }
+
 
     public function create(array $imagePayload): void
     {
         $this->imageRepository->create($imagePayload);
     }
 
-    public function delete(int $imageId)
+
+    public function delete(int $imageId): void
     {
         $this->imageRepository->delete($imageId);
     }

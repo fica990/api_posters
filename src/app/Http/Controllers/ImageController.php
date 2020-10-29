@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreImageRequest;
 use App\Services\ImageService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Throwable;
 
 class ImageController extends Controller
@@ -16,13 +16,14 @@ class ImageController extends Controller
         $this->imageService = $imageService;
     }
 
+
     public function index(): JsonResponse
     {
-        return response()->json($this->imageService->allImages());
+        return response()->json($this->imageService->nonPosters());
     }
 
 
-    public function store(Request $request)
+    public function store(StoreImageRequest $request)
     {
         $image = $request->all();
 
@@ -36,19 +37,10 @@ class ImageController extends Controller
     }
 
 
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
     public function destroy($id)
     {
         $this->imageService->delete($id);
+
+        return response(null, 200);
     }
 }

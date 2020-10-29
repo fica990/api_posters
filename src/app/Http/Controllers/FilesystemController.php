@@ -4,9 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\UploadImageRequest;
 use App\Services\Filesystem\Interfaces\FilesystemInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class FilesystemController extends Controller
 {
@@ -17,7 +17,7 @@ class FilesystemController extends Controller
         $this->filesystem = $filesystem;
     }
 
-    public function upload(string $bucket, string $filePath, Request $request): JsonResponse
+    public function upload(string $bucket, string $filePath, UploadImageRequest $request): JsonResponse
     {
         $file = $request->file('image');
 

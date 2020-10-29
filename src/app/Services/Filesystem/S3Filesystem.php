@@ -14,7 +14,7 @@ class S3Filesystem implements FilesystemInterface
 
     public function __construct(FilesystemManager $manager)
     {
-        $this->adapter = $manager->drive('local');
+        $this->adapter = $manager->drive('public');
     }
 
     public function upload(string $bucket, string $filePath, UploadedFile $file): void

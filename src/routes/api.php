@@ -15,5 +15,9 @@ use Illuminate\Http\Request;
 
 Route::apiResource('images', 'ImageController');
 
+Route::apiResource('albums', 'AlbumController');
+
+Route::post('/images/{id}/poster', 'PosterController@store')->name('images.poster');
+
 Route::post('/filesystem/{bucket}/{filePath?}', 'FilesystemController@upload')
     ->where('filePath', '(.*)');
