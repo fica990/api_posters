@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Poster extends BaseModel
 {
-    protected $fillable = ['name', 'image_id', 'album_id'];
+    protected $fillable = ['name', 'path', 'image_id', 'album_id'];
 
     public function album()
     {

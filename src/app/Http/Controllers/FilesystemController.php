@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\UploadFileRequest;
 use App\Services\Filesystem\Interfaces\FilesystemInterface;
 use Illuminate\Http\JsonResponse;
 
@@ -17,12 +17,12 @@ class FilesystemController extends Controller
         $this->filesystem = $filesystem;
     }
 
-    public function upload(string $bucket, string $filePath, UploadImageRequest $request): JsonResponse
+    public function upload(string $bucket, string $filePath, UploadFileRequest $request): JsonResponse
     {
-        $file = $request->file('image');
+        $file = $request->file('file');
 
         if (!$file || !$file->isValid()) {
-            return response()->json(['message' => 'file is not valid'], 400);
+            return new JsonResponse(['message' => 'file is not valid'], 400);
         }
 
         $this->filesystem->upload($bucket, $filePath, $file);

@@ -21,4 +21,11 @@ class S3Filesystem implements FilesystemInterface
     {
         $this->adapter->putFileAs($bucket, $file, $filePath);
     }
+
+    public function delete(string $file): void
+    {
+        $this->adapter->delete($file);
+    }
+
+
 }

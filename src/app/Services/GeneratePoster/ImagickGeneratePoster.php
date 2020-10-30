@@ -18,16 +18,8 @@ class ImagickGeneratePoster implements GeneratePosterInterface
      * @param array $posterData
      * @throws ImagickException
      */
-    public function generate(Model $image, array $posterData): void
+    public function generate(Model $image, array $posterData): string
     {
-        if (empty($posterData)) {
-            $posterData = [
-                'title' => 'title',
-                'text' => 'Neki tekst koji moze biti duzi',
-                'bg_color' => 'FF0000'
-            ];
-        }
-
         $imagePath = 'storage' . $image->path . $image->name;
 
         $imagick = new Imagick();
@@ -61,7 +53,6 @@ class ImagickGeneratePoster implements GeneratePosterInterface
         $descriptionText = $posterData['text'];
 
         $imagick->setImageBackgroundColor("#{$posterData['bg_color']}");
-        //todo beli tanki border
         $imagick->borderImage("#{$posterData['bg_color']}", 40, 30);
         $imagick->extentImage(
             $imagick->getImageWidth(),
@@ -74,6 +65,15 @@ class ImagickGeneratePoster implements GeneratePosterInterface
         $imagick->drawImage($horizontalLine);
         $imagick->annotateimage($description, 0, 75, 0, $descriptionText);
 
-        $imagick->writeImage('storage' . $image->path . uniqid('poster_') . '_' . $image->name);
+        //when editing, overwrite existing image, else create a new one
+        if (isset($posterData['poster_name'])) {
+            $posterName = $posterData['poster_name'];
+        } else {
+            $posterName = uniqid('poster_') . '_' . $image->name;
+        }
+
+        $imagick->writeImage('storage' . $image->path . $posterName);
+
+        return $posterName;
     }
 }

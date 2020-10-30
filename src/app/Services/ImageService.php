@@ -14,9 +14,9 @@ class ImageService
     }
 
 
-    public function nonPosters()
+    public function all()
     {
-        return $this->imageRepository->nonPosters();
+        return $this->imageRepository->all();
     }
 
 

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 interface GeneratePosterInterface
 {
-    public function generate(Model $image, array $posterData): void;
+    public function generate(Model $image, array $posterData): string;
 }

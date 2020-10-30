@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends BaseModel
 {
-    protected $fillable = ['name', 'path', 'is_poster'];
-
-    protected $casts = [
-        'is_poster' => 'boolean'
-    ];
+    protected $fillable = ['name', 'path'];
 
     public function posters()
     {

@@ -20,18 +20,18 @@ class AlbumController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->json($this->albumService->all());
+        return new JsonResponse($this->albumService->all());
     }
 
 
-    public function store(Request $request)
+    public function store(StoreAlbumRequest $request)
     {
         $albumData = $request->all();
 
         try {
             $this->albumService->create($albumData);
         } catch (Throwable $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
+            return new JsonResponse(['message' => $e->getMessage()], 500);
         }
 
         return response(null, 201);
@@ -40,7 +40,7 @@ class AlbumController extends Controller
 
     public function show($id)
     {
-        return response()->json($this->albumService->show($id));
+        return new JsonResponse($this->albumService->show($id));
     }
 
 
@@ -49,6 +49,8 @@ class AlbumController extends Controller
         $albumData = $request->all();
 
         $this->albumService->edit($albumData, $id);
+
+        return response(null, 200);
     }
 
 

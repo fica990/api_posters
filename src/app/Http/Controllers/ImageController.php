@@ -19,21 +19,21 @@ class ImageController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->json($this->imageService->nonPosters());
+        return new JsonResponse($this->imageService->all());
     }
 
 
     public function store(StoreImageRequest $request)
     {
-        $image = $request->all();
+        $imageData = $request->all();
 
         try {
-            $this->imageService->create($image);
+            $this->imageService->create($imageData);
         } catch (Throwable $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
+            return new JsonResponse(['message' => $e->getMessage()], 500);
         }
 
-        return response(null, 201);
+        return new JsonResponse([route('filesystem.path', ['bucket' => $imageData['path'], 'filePath' => $imageData['name']])], 201);
     }
 
 

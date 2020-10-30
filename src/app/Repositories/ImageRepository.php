@@ -15,12 +15,6 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
     }
 
 
-    public function nonPosters(): Collection
-    {
-        return $this->model->where('is_poster', '=', '0')->get();
-    }
-
-
     public function getById(int $id): Model
     {
         return $imageData = $this->model->findOrFail($id);
@@ -31,13 +25,6 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
     {
         $image = new Image($imagePayload);
         $image->saveOrFail();
-    }
-
-
-    public function edit(array $imageData, int $id): void
-    {
-        $album = $this->model->findOrFail($id);
-        $album->fill($imageData)->save();
     }
 
 

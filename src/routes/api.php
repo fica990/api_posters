@@ -17,7 +17,9 @@ Route::apiResource('images', 'ImageController');
 
 Route::apiResource('albums', 'AlbumController');
 
+Route::apiResource('posters', 'PosterController');
+
 Route::post('/images/{id}/poster', 'PosterController@store')->name('images.poster');
 
 Route::post('/filesystem/{bucket}/{filePath?}', 'FilesystemController@upload')
-    ->where('filePath', '(.*)');
+    ->where('filePath', '(.*)')->name('filesystem.path');
