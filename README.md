@@ -19,6 +19,7 @@ Start docker for the first time by running this script located in project root
 
 the script will also:
 * install composer
+* generate app key
 * create a database (named **api_posters**)
 * run migrations
 * create symlink for images

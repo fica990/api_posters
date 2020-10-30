@@ -8,7 +8,7 @@ docker-compose up --build -d
 echo "Installing composer..."
 docker exec poster_php bash -c "composer install && composer dump-autoload"
 
-echo "Running migrations..."
+echo "Generating app key..."
 docker exec poster_php bash -c "php artisan key:generate"
 
 echo "Running migrations..."
