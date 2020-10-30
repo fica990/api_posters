@@ -13,10 +13,6 @@ DB_USERNAME=docker
 DB_PASSWORD=docker
 ```
 
-Run
-
-`php artisan key:generate`
-
 Start docker for the first time by running this script located in project root
 
 `sh setup.sh`
