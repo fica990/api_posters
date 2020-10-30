@@ -12,7 +12,7 @@ echo "Running migrations..."
 docker exec poster_php bash -c "php artisan key:generate"
 
 echo "Running migrations..."
-docker exec poster_php bash -c "php artisan migrate"
+docker exec poster_php bash -c "php artisan migrate --seed"
 
 echo "Creating symlink for images..."
 docker exec poster_php bash -c "php artisan storage:link"
