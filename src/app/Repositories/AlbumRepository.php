@@ -17,9 +17,9 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     }
 
 
-    public function create(array $album): void
+    public function create(array $albumData): void
     {
-        $album = new Album($album);
+        $album = new Album($albumData);
         $album->saveOrFail();
     }
 
